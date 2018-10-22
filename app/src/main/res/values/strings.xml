@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">KotlinFirbaseChat</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="register">REGISTER</string>
+</resources>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_green_light"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/username_text_register"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:background="@android:color/white"
+        android:paddingLeft="16dp"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/email_text_register"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/white"
+        android:paddingLeft="16dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/username_text_register"
+        app:layout_constraintStart_toStartOf="@+id/username_text_register"
+        app:layout_constraintTop_toBottomOf="@+id/username_text_register" />
+
+    <EditText
+        android:id="@+id/password_text_register"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/white"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:paddingLeft="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/username_text_register"
+        app:layout_constraintStart_toStartOf="@+id/username_text_register"
+        app:layout_constraintTop_toBottomOf="@+id/email_text_register"
+        android:paddingStart="16dp" />
+
+    <Button
+        android:id="@+id/register_button_register"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/register"
+        app:layout_constraintEnd_toEndOf="@+id/password_text_register"
+        app:layout_constraintStart_toStartOf="@+id/password_text_register"
+        app:layout_constraintTop_toBottomOf="@+id/password_text_register" />
+
+    <TextView
+        android:id="@+id/already_have_account_text"
+        android:layout_width="185dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/already_have_an_account"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/register_button_register"
+        app:layout_constraintStart_toStartOf="@+id/register_button_register"
+        app:layout_constraintTop_toBottomOf="@+id/register_button_register" />
+
+</android.support.constraint.ConstraintLayout>
