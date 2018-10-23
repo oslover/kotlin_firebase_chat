@@ -124,11 +124,20 @@ class RegisterActivity : AppCompatActivity() {
         ref.setValue(user)
                 .addOnSuccessListener {
                     Log.d("RegisterActivity","User saved to FB DB")
+                    showLatestMessage()
                 }
                 .addOnFailureListener {
                     Log.d("RegisterActivity","Failed to save user")
                 }
     }
+
+    private fun showLatestMessage() {
+        val intent = Intent(this, LatestMessagesActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+    }
 }
 
-class User(val uid: String, val username: String, val profileImageUrl: String)
+class User(val uid: String, val username: String, val profileImageUrl: String) {
+    constructor() : this("", "", "")
+}

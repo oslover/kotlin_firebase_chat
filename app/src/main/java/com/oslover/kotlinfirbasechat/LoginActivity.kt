@@ -1,5 +1,6 @@
 package com.oslover.kotlinfirbasechat
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -15,6 +16,10 @@ class LoginActivity: AppCompatActivity() {
         login_button_login.setOnClickListener {
             performLogin()
         }
+
+        back_to_registration_login.setOnClickListener {
+            finish()
+        }
     }
 
     private fun performLogin() {
@@ -29,10 +34,17 @@ class LoginActivity: AppCompatActivity() {
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener {
                     if (!it.isSuccessful) return@addOnCompleteListener
-                    Toast.makeText(this, "Successfully created user with uid: ${it.result.user.uid}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Successfully logged in user with uid: ${it.result.user.uid}", Toast.LENGTH_SHORT).show()
+                    showLatestMessage()
                 }
                 .addOnFailureListener {
                     Toast.makeText(this, "Failed to login user: ${it.message}", Toast.LENGTH_SHORT).show()
                 }
+    }
+
+    private fun showLatestMessage() {
+        val intent = Intent(this, LatestMessagesActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
     }
 }
