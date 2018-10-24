@@ -1,4 +1,4 @@
-package com.oslover.kotlinfirbasechat
+package com.oslover.kotlinfirbasechat.messages
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.google.firebase.auth.FirebaseAuth
+import com.oslover.kotlinfirbasechat.R
+import com.oslover.kotlinfirbasechat.registerlogin.RegisterActivity
 
 class LatestMessagesActivity : AppCompatActivity() {
 

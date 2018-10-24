@@ -1,8 +1,7 @@
-package com.oslover.kotlinfirbasechat
+package com.oslover.kotlinfirbasechat.registerlogin
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -13,6 +12,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_register.*
 import com.google.firebase.storage.FirebaseStorage
+import com.oslover.kotlinfirbasechat.messages.LatestMessagesActivity
+import com.oslover.kotlinfirbasechat.R
+import com.oslover.kotlinfirbasechat.models.User
 import java.util.*
 
 
@@ -136,8 +138,4 @@ class RegisterActivity : AppCompatActivity() {
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
     }
-}
-
-class User(val uid: String, val username: String, val profileImageUrl: String) {
-    constructor() : this("", "", "")
 }
