@@ -12,6 +12,8 @@ import com.oslover.kotlinfirbasechat.R
 import com.oslover.kotlinfirbasechat.messages.LatestMessagesActivity.Companion.currentUser
 import com.oslover.kotlinfirbasechat.models.ChatMessage
 import com.oslover.kotlinfirbasechat.models.User
+import com.oslover.kotlinfirbasechat.view.ChatFromItem
+import com.oslover.kotlinfirbasechat.view.ChatToItem
 import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
@@ -63,6 +65,8 @@ class ChatLogActivity : AppCompatActivity() {
                     else {
                         adapter.add(ChatToItem(chatMessage.text, toUser!!))
                     }
+
+                    recycleview_chat_log.scrollToPosition(adapter.itemCount - 1))
                 }
             }
 
@@ -114,25 +118,3 @@ class ChatLogActivity : AppCompatActivity() {
     }
 }
 
-
-class ChatFromItem(val text: String, val user: User): Item<ViewHolder>() {
-    override fun getLayout(): Int {
-        return R.layout.chat_from_row
-    }
-
-    override fun bind(viewHolder: ViewHolder, position: Int) {
-        viewHolder.itemView.message_chat_from_row.text = text
-        Picasso.get().load(user.profileImageUrl).into(viewHolder.itemView.image_sender_chat_from_row)
-    }
-}
-
-class ChatToItem(val text: String, val user: User): Item<ViewHolder>() {
-    override fun getLayout(): Int {
-        return R.layout.chat_to_row
-    }
-
-    override fun bind(viewHolder: ViewHolder, position: Int) {
-        viewHolder.itemView.message_chat_to_row.text = text
-        Picasso.get().load(user.profileImageUrl).into(viewHolder.itemView.image_sender_chat_to_row)
-    }
-}

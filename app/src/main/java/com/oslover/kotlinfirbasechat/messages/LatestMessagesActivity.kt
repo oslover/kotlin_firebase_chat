@@ -1,8 +1,10 @@
 package com.oslover.kotlinfirbasechat.messages
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
 import android.view.Menu
 import android.view.MenuItem
 import com.google.firebase.auth.FirebaseAuth
@@ -11,6 +13,9 @@ import com.oslover.kotlinfirbasechat.R
 import com.oslover.kotlinfirbasechat.models.ChatMessage
 import com.oslover.kotlinfirbasechat.models.User
 import com.oslover.kotlinfirbasechat.registerlogin.RegisterActivity
+import com.oslover.kotlinfirbasechat.view.LatestMessageRow
+import com.oslover.kotlinfirbasechat.view.UserItem
+import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import com.xwray.groupie.Item
@@ -66,6 +71,8 @@ class LatestMessagesActivity : AppCompatActivity() {
     }
 
     private fun listenLatestMessages() {
+        recycleview_latest_messages.adapter = adapter
+
         val userId = FirebaseAuth.getInstance().uid
         val ref = FirebaseDatabase.getInstance().getReference("latest-messages/$userId")
         ref.addChildEventListener(object: ChildEventListener{
@@ -77,7 +84,6 @@ class LatestMessagesActivity : AppCompatActivity() {
                 var chatMessage = p0.getValue(ChatMessage::class.java) ?: return
                 latestMessagesMap[p0.key!!] = chatMessage
                 refreshRecycleView()
-                adapter.add(LatestMessageRow(chatMessage))
             }
 
             override fun onChildChanged(p0: DataSnapshot, p1: String?) {
@@ -94,7 +100,20 @@ class LatestMessagesActivity : AppCompatActivity() {
 
             }
         })
-        recycleview_latest_messages.adapter = adapter
+
+        recycleview_latest_messages.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        adapter.setOnItemClickListener { item, view ->
+            val latestMessageRow = item as LatestMessageRow
+            if (latestMessageRow.chatPartnerUser != null) {
+                showChatLog(view.context, latestMessageRow.chatPartnerUser!!)
+            }
+        }
+    }
+
+    private fun showChatLog(context: Context, user: User) {
+        val intent = Intent(context, ChatLogActivity::class.java)
+        intent.putExtra(NewMessageActivity.USER_KEY, user)
+        startActivity(intent)
     }
 
     fun showRegister() {
@@ -124,16 +143,6 @@ class LatestMessagesActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.nav_menu, menu)
         return super.onCreateOptionsMenu(menu)
-    }
-}
-
-class LatestMessageRow(val chatMessage: ChatMessage): Item<ViewHolder> () {
-    override fun bind(viewHolder: ViewHolder, position: Int) {
-        viewHolder.itemView.last_message_latest_message_row.text = chatMessage.text
-    }
-
-    override fun getLayout(): Int {
-        return R.layout.latest_message_row
     }
 }
 
