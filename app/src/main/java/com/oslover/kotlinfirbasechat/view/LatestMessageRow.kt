@@ -1,5 +1,6 @@
 package com.oslover.kotlinfirbasechat.view
 
+import android.service.autofill.DateTransformation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -12,6 +13,8 @@ import com.squareup.picasso.Picasso
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.latest_message_row.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class LatestMessageRow(val chatMessage: ChatMessage): Item<ViewHolder>() {
@@ -19,6 +22,11 @@ class LatestMessageRow(val chatMessage: ChatMessage): Item<ViewHolder>() {
 
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.itemView.last_message_latest_message_row.text = chatMessage.text
+        val timestamp = chatMessage.timeStamp * 1000L
+
+        val dateFormat = SimpleDateFormat("MM/dd/yyyy")
+        val date =  Date(timestamp)
+        viewHolder.itemView.date_latest_message_row.text = dateFormat.format(date)
 
         val chatPartnerId: String
         if ( chatMessage.fromId == FirebaseAuth.getInstance().uid) {

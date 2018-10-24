@@ -2,6 +2,8 @@ package com.oslover.kotlinfirbasechat.messages
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
@@ -32,6 +34,14 @@ class LatestMessagesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_latest_messages)
+
+        supportActionBar?.show()
+        supportActionBar?.title = "Messenger"
+
+        supportActionBar?.setDisplayShowHomeEnabled(true);
+        supportActionBar?.setLogo(R.drawable.logo)
+        supportActionBar?.setDisplayUseLogoEnabled(true)
+//        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#ffffff")))
 
         verifyUserIsLoggedIn()
         listenLatestMessages()
