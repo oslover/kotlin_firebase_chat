@@ -40,7 +40,7 @@ class ChatLogActivity : AppCompatActivity() {
         recycleview_chat_log.adapter = adapter
 
         send_button_chat_log.setOnClickListener {
-            Log.d(TAG, "Attempting to send message...")
+            //Log.d(TAG, "Attempting to send message...")
             performSendMessage()
         }
 
