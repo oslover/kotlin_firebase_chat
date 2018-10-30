@@ -24,7 +24,7 @@ class LatestMessageRow(val chatMessage: ChatMessage): Item<ViewHolder>() {
         viewHolder.itemView.last_message_latest_message_row.text = chatMessage.text
         val timestamp = chatMessage.timeStamp * 1000L
 
-        val dateFormat = SimpleDateFormat("MM/dd/yyyy")
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
         val date =  Date(timestamp)
         viewHolder.itemView.date_latest_message_row.text = dateFormat.format(date)
 
