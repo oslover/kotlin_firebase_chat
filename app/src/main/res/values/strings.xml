@@ -2,4 +2,6 @@
     <string name="app_name">KotlinFirbaseChat</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="register">REGISTER</string>
+    <string name="enter_message">Enter Message</string>
+    <string name="send">Send</string>
 </resources>
